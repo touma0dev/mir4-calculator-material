@@ -2,5 +2,5 @@
   publish = "Home/"
 [[redirects]]
   from = "/*"
-  to = "/Home/mir4.html"
+  to = "/Home/index.html"
   status = 200
