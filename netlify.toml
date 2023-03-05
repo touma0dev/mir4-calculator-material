@@ -1,0 +1,6 @@
+[build]
+  publish = "Home/"
+[[redirects]]
+  from = "/*"
+  to = "/Home/mir4.html"
+  status = 200
