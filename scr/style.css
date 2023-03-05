@@ -1,0 +1,109 @@
+* {
+  font-size: 1rem;
+  font-family: "Noto Sans KR", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a,
+li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.table-flex,
+.flex {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-around;
+}
+
+.spacing {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.navbar {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-around;
+  padding: 5px 5px;
+  background: rgb(13, 13, 13);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(5.5px);
+}
+.navbar-link {
+  border: 20px;
+}
+.navbar-list {
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-list li a {
+  font-size: 16px;
+}
+.navbar-list-functions {
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-list-functions a {
+  font-size: 30pt;
+  padding: 1em;
+  color: #fff;
+  position: relative;
+}
+.navbar-list-functions a::before {
+  opacity: 0;
+  top: 50px;
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: -5px;
+  width: calc(100% - 20px);
+  width: 100%;
+  height: 5px;
+  background-color: #cd0001;
+  transform: skewX(-45deg);
+  transition: opacity 0.3s ease;
+}
+.navbar-list-functions a:hover::before {
+  opacity: 1;
+}
+.navbar-list-home a {
+  display: inline-block;
+  font-weight: 700;
+  color: #d91919;
+  position: relative;
+}
+.navbar-list-home a::before {
+  opacity: 0;
+  top: 34px;
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - 20px);
+  width: 55px;
+  height: 5px;
+  background-color: #cd0001;
+  transform: skewX(-45deg);
+  transition: opacity 0.3s ease;
+}
+.navbar-list-home a:hover::before {
+  opacity: 1;
+}/*# sourceMappingURL=style.css.map */

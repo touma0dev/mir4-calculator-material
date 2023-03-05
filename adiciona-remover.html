@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Adicionar e remover elementos com JavaScript</title>
+	<style>
+		.container {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 20px;
+		}
+
+		.item>li {
+			list-style: decimal;
+		}
+
+		.item {
+			width: 269px;
+			max-width: 269px;
+			border-radius: 5px;
+			border: 2px solid rgb(166, 166, 243);
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 10px;
+			padding: 5px;
+		}
+
+		.main-input input {
+			padding: 10px;
+			border-radius: 5px;
+			outline: none;
+			border: 2px solid rgb(166, 166, 243);
+		}
+
+		.main-input input:hover {
+			border: 2px solid rgb(57, 57, 255);
+		}
+
+		.item input[type="text"] {
+			margin-right: 10px;
+		}
+
+		#add-button:hover {
+			color: rgb(57, 57, 255);
+			background-color: rgb(255, 255, 255);
+			border: 2px solid rgb(57, 57, 255);
+		}
+
+		#item-container {
+			display: flex;
+			flex-direction: column;
+			padding: 5px;
+			justify-content: center;
+			align-items: center;
+			max-width: 300px;
+		}
+
+		.item button,
+		#add-button {
+
+			border-radius: 5px;
+			color: rgb(57, 57, 255);
+			background-color: rgb(255, 255, 255);
+			border: 2px solid rgb(57, 57, 255);
+			padding: 10px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="main-input">
+			<input type="text" id="input">
+			<button id="add-button">Adicionar</button>
+		</div>
+		<div id="item-container"></div>
+	</div>
+
+
+	<script>
+		const input = document.getElementById('input');
+		const addButton = document.getElementById('add-button');
+		const itemContainer = document.getElementById('item-container');
+		let count = 1;
+
+// Verifica se há itens armazenados no cache local e os carrega, se houver
+if (localStorage.getItem('items')) {
+  itemContainer.innerHTML = localStorage.getItem('items');
+  count = itemContainer.children.length + 1;
+}
+
+function addItem() {
+  const text = input.value.trim();
+  if (text) {
+    const item = createItem(text, count);
+    itemContainer.appendChild(item);
+    input.value = '';
+    count++;
+    // Salva a lista de itens no cache local
+    localStorage.setItem('items', itemContainer.innerHTML);
+  }
+}
+
+function removeItem() {
+  this.parentElement.remove();
+  // Salva a lista de itens atualizada no cache local
+  localStorage.setItem('items', itemContainer.innerHTML);
+}
+
+function createItem(text, count) {
+  const item = document.createElement('li');
+  item.classList.add('item');
+  item.textContent = `${count.toString().padStart(2, '0')}. ${text}`;
+
+  const removeButton = document.createElement('button');
+  removeButton.textContent = 'Remover';
+  removeButton.addEventListener('click', removeItem);
+
+  item.appendChild(removeButton);
+
+  return item;
+}
+
+addButton.addEventListener('click', addItem);
+
+	</script>
+</body>
+
+</html>

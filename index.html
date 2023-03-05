@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Para Poucos</title>
+</head>
+<body>
+  <p>Material Requintado</p><input id="aco-heroic" type="number">
+  <br>
+  <p>Material Raro</p><input id="raro" type="number">
+  <button onclick="calcular()">Calcular</button>
+  <table>
+    <thead>
+      <tr>
+        <th>Materiais</th>
+        <th>Aço Heroic</th>
+        <th>Pó Gasto</th>
+        <th>Darksteel</th>
+        <th>Cobre Gasto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Aço Heroic</td>
+        <td id="aco-heroic"></td>
+        <td id="po-requintado"></td>
+        <td id="dark"></td>
+        <td id="cobre"></td>
+      </tr>
+
+    </tbody>
+  </table>
+  
+  <script>
+    self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match('/list-data.json').then(function(response) {
+      return response || fetch(event.request);
+    })
+  );
+});
+function calcular() {
+  var req = parseInt(document.getElementById('requintado').value) || 0;
+  var raro = parseInt(document.getElementById('raro').value) || 0;
+  var epic = Math.floor(req / 100) + raro / 10;
+  var cobre_req=req/10*2000;
+  var dar_req=req/10*1000;
+  var cobre_raro=raro/10*20000;
+  var dar_raro=raro/10*5000;
+  var cobre_total=cobre_req+cobre_raro;
+  var dar_total=dar_raro+dar_req;
+  var req_po = req/10*2;
+  var raro_po = raro/10*25;
+  var po_total = req_po + raro_po;
+
+  document.getElementById('aco-heroic').innerHTML = epic > 0 ? epic.toFixed(1) : '0';
+  document.getElementById('po-requintado').innerHTML = po_total.toLocaleString() ;
+  document.getElementById('dark').innerHTML = dar_total > 0 ? dar_total.toFixed(1) : '0';
+  document.getElementById('cobre').innerHTML = cobre_total > 0 ? cobre_total.toFixed(1) : '0';
+}
+
+calcular();
+
+document.getElementById('requintado').addEventListener('input', function() {
+  calcular();
+});
+
+document.getElementById('raro').addEventListener('input', function() {
+  calcular();
+});
+
+ 
+
+  </script>
+  
+</body>
+</html>
